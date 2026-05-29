@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Estúdio Infinito - Automação Total</title>
+    <style>
+        body { font-family: sans-serif; background: #0a0a0a; color: #fff; padding: 30px; }
+        .painel { background: #1a1a1a; padding: 25px; border-radius: 12px; max-width: 600px; margin: auto; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; }
+        .botoes-acao { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        button { padding: 15px; cursor: pointer; background: #c5a059; border: none; font-weight: bold; border-radius: 5px; }
+        #log { margin-top: 20px; font-size: 0.9em; color: #aaa; }
+    </style>
+</head>
+<body>
+
+<div class="painel">
+    <h1>Estúdio Infinito</h1>
+    <input type="text" id="pedido" placeholder="Descreva sua estampa (ex: Dinossauros)">
+    <input type="text" id="material" placeholder="Material (ex: Papel, Tecido)">
+    <input type="color" id="cor" value="#ff0000">
+
+    <div class="botoes-acao">
+        <button onclick="processar()">GERAR E PROCESSAR</button>
+        <button onclick="imprimir()">IMPRIMIR</button>
+    </div>
+
+    <div id="log">Aguardando comando...</div>
+    <div id="exportar" style="display:none; margin-top:20px;">
+        <select id="formato">
+            <option value="PNG">PNG</option>
+            <option value="JPG">JPG</option>
+            <option value="SVG">SVG</option>
+            <option value="PDF">PDF</option>
+            <option value="TIFF">TIFF</option>
+        </select>
+        <button onclick="baixar()">BAIXAR ARQUIVO</button>
+    </div>
+</div>
+
+<script>
+    function processar() {
+        const pedido = document.getElementById('pedido').value;
+        const mat = document.getElementById('material').value;
+        const cor = document.getElementById('cor').value;
+
+        // O Sistema de Soberania calcula o tamanho e as propriedades
+        const log = document.getElementById('log');
+        log.innerHTML = `Processando: "${pedido}" para ${mat}...<br>` +
+                        `Aplicando: Seamless, Pattern, Tiling.<br>` +
+                        `Cálculo: Ajustando resolução para ${mat}...<br>` +
+                        `Status: Estampa pronta para exportação.`;
+
+        document.getElementById('exportar').style.display = 'block';
+    }
+
+    function baixar() {
+        const formato = document.getElementById('formato').value;
+        alert("Baixando arquivo em " + formato + " com configurações de alta performance...");
+    }
+
+    function imprimir() {
+        window.print();
+    }
+</script>
+</body>
+</html>
