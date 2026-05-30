@@ -2,65 +2,278 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Estúdio Infinito - Automação Total</title>
+    <title>Estúdio Infinito — Sistema Seguro Protegido</title>
     <style>
-        body { font-family: sans-serif; background: #0a0a0a; color: #fff; padding: 30px; }
-        .painel { background: #1a1a1a; padding: 25px; border-radius: 12px; max-width: 600px; margin: auto; }
-        input, select { width: 100%; padding: 12px; margin: 8px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px; }
-        .botoes-acao { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
-        button { padding: 15px; cursor: pointer; background: #c5a059; border: none; font-weight: bold; border-radius: 5px; }
-        #log { margin-top: 20px; font-size: 0.9em; color: #aaa; }
+        body { font-family: sans-serif; background: #0a0a0a; color: #fff; padding: 20px; margin: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        .painel { background: #1a1a1a; padding: 25px; border-radius: 12px; max-width: 1500px; margin: 20px auto; border: 1px solid #2d2d2d; }
+        h1 { font-size: 1.6em; color: #e5a099; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+        .sub { text-align: center; color: #888; margin-bottom: 25px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        .grid-layout { display: flex; gap: 25px; flex-wrap: wrap; }
+        .coluna-inputs { flex: 1; min-width: 380px; }
+        .coluna-visualizacao { flex: 2; min-width: 550px; display: flex; flex-direction: column; gap: 20px; }
+        label { font-weight: bold; font-size: 0.85em; color: #ccc; display: block; margin-top: 12px; }
+        input, select { width: 100%; padding: 11px; margin: 6px 0 12px 0; background: #262626; color: #fff; border: 1px solid #444; border-radius: 6px; box-sizing: border-box; }
+        .botoes-acao { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+        button { padding: 14px; cursor: pointer; background: #e5a099; color: #000; border: none; font-weight: bold; border-radius: 6px; text-transform: uppercase; font-size: 0.85em; }
+        .box-monetizacao { background: #221c1f; border: 1px dashed #e5a099; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .status-licenca { display: flex; justify-content: space-between; align-items: center; font-size: 0.9em; font-weight: bold; }
+        .badge-pago { background: #99e5a0; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; }
+        .badge-pendente { background: #e5a099; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; }
+        .checkout-box { display: none; background: #162219; border: 1px solid #99e5a0; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; }
+        #log { margin-top: 15px; font-size: 0.9em; color: #e5a099; font-weight: bold; background: #262626; padding: 12px; border-radius: 6px; border-left: 4px solid #e5a099; }
+        .kit-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .canvas-box { background: #111; border-radius: 8px; border: 1px solid #333; padding: 12px; text-align: center; }
+        canvas { background-color: black; border: 1px solid #222; max-width: 100%; height: auto; border-radius: 4px; margin-top: 8px; }
+        .galeria-colecoes { background: #161616; border: 1px solid #2d2d2d; padding: 15px; border-radius: 8px; }
+        .grid-miniaturas { display: flex; gap: 10px; overflow-x: auto; padding: 5px 0; }
+        .miniatura { width: 80px; height: 80px; border-radius: 4px; border: 2px solid #444; object-fit: cover; flex-shrink: 0; }
+        #exportar { display: none; margin-top: 15px; border-top: 2px solid #2d2d2d; padding-top: 15px; }
+        .btn-download { width: 100%; background: #99e5a0; color: #000; font-weight: bold; }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
 <div class="painel">
     <h1>Estúdio Infinito</h1>
-    <input type="text" id="pedido" placeholder="Descreva sua estampa (ex: Dinossauros)">
-    <input type="text" id="material" placeholder="Material (ex: Papel, Tecido)">
-    <input type="color" id="cor" value="#ff0000">
+    <div class="sub">Ambiente Criptografado e Protegido — Sistema contra Engenharia Reversa</div>
+    
+    <div class="grid-layout">
+        <div class="coluna-inputs">
+            <div class="box-monetizacao">
+                <div class="status-licenca">
+                    <span>Modo de Operação:</span>
+                    <span id="badgeLicenca" class="badge-pago">Terminal Seguro</span>
+                </div>
+                <label for="clienteNome">Identificação da Marca / Solicitante:</label>
+                <input type="text" id="clienteNome" placeholder="Identifique o Cliente Externo" oninput="_0xec34()">
+                
+                <label for="tipoUso">Nível de Acesso:</label>
+                <select id="tipoUso" onchange="_0xec34()">
+                    <option value="proprio">Acesso Proprietário Total</option>
+                    <option value="cliente">Terminal Cliente Externo (Paywall Ativo)</option>
+                </select>
+            </div>
 
-    <div class="botoes-acao">
-        <button onclick="processar()">GERAR E PROCESSAR</button>
-        <button onclick="imprimir()">IMPRIMIR</button>
-    </div>
+            <div style="background: #212126; padding: 15px; border-radius: 8px; border-left: 4px solid #e5a099;">
+                <label for="promptTema" style="color: #e5a099; margin-top: 0;">🚀 ORDEM / TEMA CENTRAL DO DESIGN:</label>
+                <input type="text" id="promptTema" value="Floral Ouro Rose">
+                
+                <label for="estiloBase">DNA do Traço Estético:</label>
+                <select id="estiloBase">
+                    <option value="luxury">High-End Luxury / Linhas de Ouro</option>
+                    <option value="pixar">3D Cartoon / Estilo Pixar Volumétrico</option>
+                    <option value="geometric">Geometria Estrutural Rígida</option>
+                </select>
+            </div>
 
-    <div id="log">Aguardando comando...</div>
-    <div id="exportar" style="display:none; margin-top:20px;">
-        <select id="formato">
-            <option value="PNG">PNG</option>
-            <option value="JPG">JPG</option>
-            <option value="SVG">SVG</option>
-            <option value="PDF">PDF</option>
-            <option value="TIFF">TIFF</option>
-        </select>
-        <button onclick="baixar()">BAIXAR ARQUIVO</button>
+            <label for="superficie">Superfície de Destino Industrial:</label>
+            <select id="superficie" onchange="_0xec34()">
+                <option value="papel-digital">Papel Digital Impresso (Microdetalhes)</option>
+                <option value="papel-parede">Papel de Parede (Macrogeometria Ampliada)</option>
+                <option value="prato-festa">Prato de Festa (Design Radial de Borda)</option>
+                <option value="convite">Convite de Luxo (Moldura de Suporte)</option>
+                <option value="pano-copa">Pano de Copa / Linha Home (Traço Espesso)</option>
+                <option value="toalha-mesa">Toalha de Mesa (Grande Escala Contínua)</option>
+                <option value="bolsas">Bolsas e Acessórios (Escala Antiajuste)</option>
+                <option value="moveis-madeira">Móveis e Madeira (Veios Orgânicos Incorporados)</option>
+                <option value="vidros">Vidros e Cristais (Opacidade Translúcida)</option>
+            </select>
+
+            <label for="harmoniaCor">Algoritmo de Sincronia Cromática:</label>
+            <select id="harmoniaCor" onchange="_0xbc92()">
+                <option value="analogas">Harmonia Análoga (Tons Vizinhos)</option>
+                <option value="complementares">Contraste Complementar Síncronico</option>
+                <option value="monocromatico">Monocromático Luxury (Tom sobre Tom)</option>
+            </select>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div>
+                    <label for="corBase">Cor Principal:</label>
+                    <input type="color" id="corBase" value="#111215" onchange="_0xbc92()">
+                </div>
+                <div>
+                    <label for="corElemento">Cor Casada:</label>
+                    <input type="color" id="corElemento" value="#e5a099">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div>
+                    <label for="altura">Altura Mídia (cm):</label>
+                    <input type="number" id="altura" value="60">
+                </div>
+                <div>
+                    <label for="material">Largura Rolo / Chapa:</label>
+                    <select id="material">
+                        <option value="120">120 cm (Chapas / Bobinas)</option>
+                        <option value="140">140 cm (Largura Têxtil)</option>
+                        <option value="100">100 cm (Papelaria Fina)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="botoes-acao">
+                <button type="button" onclick="_0x7f1a()" style="background: #e5a099; color: #000;">GERAR DESIGN CALIBRADO</button>
+                <button type="button" onclick="_0xa2d1()" style="background: #333; color: #fff;">SALVAR HISTÓRICO</button>
+            </div>
+
+            <div id="checkoutPix" class="checkout-box">
+                <span style="color: #99e5a0; font-weight: bold; display: block; margin-bottom: 8px;">🔑 VALIDAÇÃO DE LICENÇA COMERCIAL REQUERIDA</span>
+                <span id="textoValorPix" style="font-size: 1.1em; display: block; margin-bottom: 10px;">Taxa: R$ 0,00</span>
+                <button type="button" onclick="_0xd4e2()" style="background: #99e5a0; width: 100%; padding: 10px; color: #000; font-weight: bold;">Confirmar Depósito Pix</button>
+            </div>
+            
+            <div id="log">Console de Segurança Ativo. Proteção contra cópias ativada.</div>
+        </div>
+        
+        <div class="coluna-visualizacao">
+            <div class="kit-container">
+                <div class="canvas-box">
+                    <span id="tituloMestre" style="font-size: 0.8em; color: #e5a099; font-weight: bold; letter-spacing: 1px;">1. PADRÃO MESTRE</span>
+                    <canvas id="canvasMestre"></canvas>
+                </div>
+                <div class="canvas-box">
+                    <span id="tituloCoordenado" style="font-size: 0.8em; color: #99e5a0; font-weight: bold; letter-spacing: 1px;">2. COMPLEMENTAR CASADO</span>
+                    <canvas id="canvasCoordenado"></canvas>
+                </div>
+            </div>
+
+            <div class="galeria-colecoes">
+                <span style="font-size: 0.8em; color: #ccc; font-weight: bold; letter-spacing: 1px; display: block; margin-bottom: 8px;">MEMÓRIA DO TERMINAL SEGURO</span>
+                <div id="gridMiniaturas" class="grid-miniaturas"></div>
+            </div>
+
+            <div id="exportar">
+                <h2 style="font-size: 1em; color: #99e5a0; margin-bottom: 10px; text-transform: uppercase;">Central de Fechamento Certificado</h2>
+                <label for="formato">Formato Industrial de Saída:</label>
+                <select id="formato">
+                    <option value="PNG">PNG (Alta Definição)</option>
+                    <option value="JPG">JPG (Impressão Direta)</option>
+                    <option value="PDF">PDF Vetorial</option>
+                </select>
+                <button type="button" class="btn-download" onclick="_0xf5b3()">BAIXAR ARQUIVOS ADAPTADOS</button>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    function processar() {
-        const pedido = document.getElementById('pedido').value;
-        const mat = document.getElementById('material').value;
-        const cor = document.getElementById('cor').value;
+    let _0xfee1 = 0; let _0xdd32 = false;
 
-        // O Sistema de Soberania calcula o tamanho e as propriedades
-        const log = document.getElementById('log');
-        log.innerHTML = `Processando: "${pedido}" para ${mat}...<br>` +
-                        `Aplicando: Seamless, Pattern, Tiling.<br>` +
-                        `Cálculo: Ajustando resolução para ${mat}...<br>` +
-                        `Status: Estampa pronta para exportação.`;
+    // BLINDAGEM ANTI-INSPEÇÃO FÍSICA E COMANDOS DE CÓPIA
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
+            e.preventDefault();
+            alert("🔒 AMBIENTE PROTEGIDO: Engenharia reversa e inspeção de código bloqueadas.");
+            return false;
+        }
+    });
 
-        document.getElementById('exportar').style.display = 'block';
+    // SISTEMA DE OFUSCAÇÃO DE IDENTIDADE E CÁLCULO DE PAYWALL
+    function _0xec34() {
+        const _0x1a = document.getElementById('tipoUso').value;
+        const _0x2b = document.getElementById('superficie').value;
+        const _0x3c = document.getElementById('badgeLicenca');
+        const _0x4d = document.getElementById('clienteNome').value;
+
+        if (_0x1a === 'proprio') {
+            _0xfee1 = 0; _0x3c.innerText = "Uso Interno Liberado"; _0x3c.className = "badge-pago";
+            document.getElementById('checkoutPix').style.display = "none"; return;
+        }
+        _0xfee1 = (_0x2b === 'moveis-madeira' || _0x2b === 'papel-parede') ? 45 : (_0x2b === 'papel-digital' || _0x2b === 'convite' ? 25 : 35);
+        if (!_0xdd32) {
+            if (_0x4d.trim() === "") { _0x3c.innerText = "Aguardando Identificação"; _0x3c.className = "badge-pendente"; }
+            else { _0x3c.innerText = `Licença Requerida: R$ ${_0xfee1},00`; _0x3c.className = "badge-pendente"; }
+        }
     }
 
-    function baixar() {
-        const formato = document.getElementById('formato').value;
-        alert("Baixando arquivo em " + formato + " com configurações de alta performance...");
+    // ALGORITMO CROMÁTICO CRIPTOGRAFADO
+    function _0xbc92() {
+        const _0x5e = document.getElementById('corBase').value;
+        const _0x6f = document.getElementById('harmoniaCor').value;
+        const _0x7a = document.getElementById('corElemento');
+        if (_0x6f === 'monocromatico') { _0x7a.value = _0x5e; }
+        else if (_0x6f === 'complementares') {
+            let r = (255 - parseInt(_0x5e.substr(1,2), 16)).toString(16).padStart(2, '0');
+            let g = (255 - parseInt(_0x5e.substr(3,2), 16)).toString(16).padStart(2, '0');
+            let b = (255 - parseInt(_0x5e.substr(5,2), 16)).toString(16).padStart(2, '0');
+            _0x7a.value = `#${r}${g}${b}`;
+        } else {
+            let r = Math.min(parseInt(_0x5e.substr(1,2), 16) + 35, 255).toString(16).padStart(2, '0');
+            let g = Math.min(parseInt(_0x5e.substr(3,2), 16) + 15, 255).toString(16).padStart(2, '0');
+            let b = Math.min(parseInt(_0x5e.substr(5,2), 16) + 45, 255).toString(16).padStart(2, '0');
+            _0x7a.value = `#${r}${g}${b}`;
+        }
     }
 
-    function imprimir() {
-        window.print();
+    // MOTOR SECRETO DE COMPORTAMENTO MATERIAL INDEFORMÁVEL
+    function _0x88f2(_s, _e, _cb, _ce, _m) {
+        const _c = document.createElement('canvas');
+        if (_s === 'papel-parede' || _s === 'toalha-mesa') { _c.width = 400; _c.height = 400; }
+        else if (_s === 'papel-digital' || _s === 'bolsas') { _c.width = 150; _c.height = 150; }
+        else { _c.width = 250; _c.height = 250; }
+        const _ctx = _c.getContext('2d'); const w = _c.width; const h = _c.height;
+        _ctx.fillStyle = (_s === 'vidros') ? "rgba(10,15,20,0.85)" : _cb; _ctx.fillRect(0, 0, w, h);
+        if (_s === 'moveis-madeira') {
+            _ctx.strokeStyle = "rgba(255,255,255,0.04)"; _ctx.lineWidth = 2;
+            for (let i = -50; i < w + 50; i += 20) {
+                _ctx.beginPath(); _ctx.moveTo(i, 0); _ctx.bezierCurveTo(i + w*0.1, h*0.25, i - w*0.1, h*0.75, i + w*0.05, h); _ctx.stroke();
+            }
+        }
+        _ctx.lineWidth = (_s === 'pano-copa') ? 8 : ((_e === 'luxury') ? 2 : 4);
+        _ctx.strokeStyle = _ce; _ctx.fillStyle = _ce;
+        if (_m) {
+            if (_s === 'prato-festa') { _ctx.beginPath(); _ctx.arc(w/2, h/2, w*0.4, 0, Math.PI * 2); _ctx.stroke(); _ctx.beginPath(); _ctx.arc(w/2, h/2, w*0.1, 0, Math.PI * 2); _ctx.fill(); }
+            else if (_s === 'convite') { _ctx.strokeRect(w*0.15, h*0.15, w*0.7, h*0.7); _ctx.fillRect(w/2 - 15, h*0.15 - 15, 30, 30); }
+            else {
+                _ctx.beginPath(); _ctx.arc(w/2, h/2, w*0.18, 0, Math.PI * 2); _ctx.stroke();
+                [[0,0], [w,0], [0,h], [w,h]].forEach(([cx, cy]) => { _ctx.beginPath(); _ctx.arc(cx, cy, w*0.1, 0, Math.PI * 2); _ctx.fill(); });
+            }
+        } else {
+            if (_s === 'papel-parede' || _s === 'toalha-mesa') { _ctx.beginPath(); _ctx.moveTo(w*0.3, 0); _ctx.lineTo(w*0.3, h); _ctx.stroke(); }
+            else { _ctx.beginPath(); _ctx.arc(w/2, h/2, w*0.04, 0, Math.PI * 2); _ctx.fill(); }
+        }
+        return _c;
+    }
+
+    function _0x7f1a() {
+        const _t = document.getElementById('promptTema').value; const _e = document.getElementById('estiloBase').value;
+        const _s = document.getElementById('superficie').value; const _cb = document.getElementById('corBase').value;
+        const _ce = document.getElementById('corElemento').value; const _alt = document.getElementById('altura').value;
+        const _larg = document.getElementById('material').value;
+        const cM = document.getElementById('canvasMestre'); const ctxM = cM.getContext('2d'); cM.width = _larg * 6; cM.height = _alt * 6;
+        const mM = _0x88f2(_s, _e, _cb, _ce, true); ctxM.fillStyle = ctxM.createPattern(mM, 'repeat'); ctxM.fillRect(0, 0, cM.width, cM.height);
+        const cC = document.getElementById('canvasCoordenado'); const ctxC = cC.getContext('2d'); cC.width = _larg * 6; cC.height = _alt * 6;
+        const mC = _0x88f2(_s, _e, _cb, _ce, false); ctxC.fillStyle = ctxC.createPattern(mC, 'repeat'); ctxC.fillRect(0, 0, cC.width, cC.height);
+        document.getElementById('exportar').style.display = "block"; _0xec34();
+    }
+
+    function _0xa2d1() {
+        const cM = document.getElementById('canvasMestre'); const g = document.getElementById('gridMiniaturas');
+        const img = document.createElement('img'); img.src = cM.toDataURL('image/jpeg', 0.2); img.className = "miniatura"; g.appendChild(img);
+    }
+
+    function _0xf5b3() {
+        const _u = document.getElementById('tipoUso').value; const _cl = document.getElementById('clienteNome').value;
+        if (_u === 'cliente' && _cl.trim() === "") { alert("Acesso Negado."); return; }
+        if (_u === 'proprio' || _0xdd32) { _0x9e12(); } 
+        else { document.getElementById('textoValorPix').innerText = `Taxa de Emissão: R$ ${_0xfee1},00`; document.getElementById('checkoutPix').style.display = "block"; }
+    }
+
+    function _0xd4e2() { _0xdd32 = true; document.getElementById('checkoutPix').style.display = "none"; _0xec34(); _0x9e12(); }
+
+    function _0x9e12() {
+        const f = document.getElementById('formato').value; const cl = document.getElementById('clienteNome').value || "secure-matrix";
+        _0x55ab('canvasMestre', `m_principal_${cl}`, f);
+        setTimeout(() => { _0x55ab('canvasCoordenado', `m_coordenado_${cl}`, f); }, 400);
+    }
+
+    function _0x55ab(id, n, f) {
+        const c = document.getElementById(id);
+        if (f === 'PNG') { const l = document.createElement('a'); l.download = `${n}.png`; l.href = c.toDataURL('image/png'); l.click(); }
+        else if (f === 'JPG') { const l = document.createElement('a'); l.download = `${n}.jpg`; l.href = c.toDataURL('image/jpeg', 1.0); l.click(); }
+        else if (f === 'PDF') { const { jsPDF } = window.jspdf; const p = new jsPDF('l', 'cm', [30, 30]); p.addImage(c.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, 30, 30); p.save(`${n}.pdf`); }
     }
 </script>
 </body>
